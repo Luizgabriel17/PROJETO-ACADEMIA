@@ -8,6 +8,6 @@
     "esModuleInterop": true, // Habilita a compatibilidade com módulos ES6
     "forceConsistentCasingInFileNames": true // Impede problemas de diferenciação de maiúsculas/minúsculas
   },
-  "include": ["src", "src/cadastroAcademias.js", "site-academia.ts", "TS/cadastroAcademias.ts"],           // Diretório que contém os arquivos TypeScript a serem compilados
+  "include": ["TS"],           // Diretório que contém os arquivos TypeScript a serem compilados
   "exclude": ["node_modules"]   // Diretório que será excluído da compilação
 }

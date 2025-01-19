@@ -52,9 +52,10 @@ function salvarExercicio(): void {
     const nome = (document.getElementById("nome") as HTMLInputElement).value;
     const grupoMuscular = (document.getElementById("grupoMuscular") as HTMLInputElement).value;
     const repeticoes = parseInt((document.getElementById("repeticoes") as HTMLInputElement).value);
+    const serie = parseFloat((document.getElementById("carga") as HTMLInputElement).value);
     const carga = parseFloat((document.getElementById("carga") as HTMLInputElement).value);
 
-    const exercicio = { nome, grupoMuscular, repeticoes, carga };
+    const exercicio = { nome, grupoMuscular, repeticoes, serie, carga };
 
     const exercicios = JSON.parse(localStorage.getItem("exercicios") || "[]");
     exercicios.push(exercicio);

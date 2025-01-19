@@ -8,11 +8,11 @@ function abrirCadastroInstrutor(): void {
 }
 
 function abrirCadastroPlanoTreino(): void {
-    window.open("cadastro-plano-treino.html", "_blank", "width=600,height=700");
+    window.open("novos-planosTreinos.html", "_blank", "width=600,height=700");
 }
 
 function abrirCadastroExercicio(): void {
-    window.open("cadastro-exercicio.html", "_blank", "width=600,height=700");
+    window.open("novos-exercicios.html", "_blank", "width=600,height=700");
 }
 })
 function excluirAluno(index: number): void {

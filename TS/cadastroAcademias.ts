@@ -1,26 +1,11 @@
-// Interface para representar uma academia
-interface Academia {
-    nome: string;
-    responsavel: string;
-    cnpj: string; // Ajustado para string, pois o CNPJ contém 14 dígitos
-    endereco: string;
-    login: string;
-    senha: string;
-}
-
 // Função para validar o CNPJ
 function validarCNPJ(cnpj: string): boolean {
     const cnpjLimpo = cnpj.replace(/[^\d]+/g, '');
-    return cnpjLimpo.length === 14; // Validação básica
-}
-
-// Função para mostrar mensagens
-function mostrarMensagem(mensagem: string, tipo: "sucesso" | "erro"): void {
-    alert(`${tipo.toUpperCase()}: ${mensagem}`);
+    return cnpjLimpo.length === 14;
 }
 
 // Evento para lidar com o envio do formulário
-document.getElementById("cadastroAcademiaForm")?.addEventListener("submit", (event) => {
+document.getElementById("cadastroAcademiaForm")?.addEventListener("submit", (event: Event) => {
     event.preventDefault();
 
     const nome = (document.getElementById("nomeAcademia") as HTMLInputElement).value.trim();
@@ -30,29 +15,22 @@ document.getElementById("cadastroAcademiaForm")?.addEventListener("submit", (eve
     const login = (document.getElementById("login") as HTMLInputElement).value.trim();
     const senha = (document.getElementById("senha") as HTMLInputElement).value.trim();
 
-    // Validação dos campos
     if (!nome || !responsavel || !cnpj || !endereco || !login || !senha) {
-        mostrarMensagem("Por favor, preencha todos os campos.", "erro");
+        alert("Por favor, preencha todos os campos.");
         return;
     }
 
     if (!validarCNPJ(cnpj)) {
-        mostrarMensagem("CNPJ inválido.", "erro");
+        alert("CNPJ inválido.");
         return;
     }
 
-    // Criando uma nova academia
-    const novaAcademia: Academia = { nome, responsavel, cnpj, endereco, login, senha };
+    // Cria e salva a nova academia
+    const novaAcademia = { nome, responsavel, cnpj, endereco, login, senha };
+    const academias = JSON.parse(localStorage.getItem("academias") || "[]");
+    academias.push(novaAcademia);
+    localStorage.setItem("academias", JSON.stringify(academias));
 
-    // Salvar a academia no localStorage
-    localStorage.setItem("academia", JSON.stringify(novaAcademia));
-    mostrarMensagem("Academia cadastrada com sucesso!", "sucesso");
-
-    // Redirecionar para a página de login após 2 segundos
-    setTimeout(() => {
-        window.location.href = "login.html";
-    }, 2000);
-
-    // Limpar os campos do formulário
-    (document.getElementById("cadastroAcademiaForm") as HTMLFormElement).reset();
+    alert("Academia cadastrada com sucesso!");
+    window.location.href = "acesso-adm.html"; // Redirecionar
 });
